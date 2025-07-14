@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   building-cohort-with-strobe: building-cohort-with-strobe.html
   plot-strobe-diagram: plot-strobe-diagram.html
-last_built: 2025-07-13T16:24Z
+last_built: 2025-07-14T12:56Z
 urls:
   reference: https://vagishhemmige.github.io/strobe/reference
   article: https://vagishhemmige.github.io/strobe/articles
