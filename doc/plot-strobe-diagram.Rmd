@@ -20,10 +20,10 @@ The STROBE (Strengthening the Reporting of Observational Studies in Epidemiology
 
 The `strobe` package provides tools to generate reproducible STROBE-style diagrams from your cohort-building process. This vignette shows how to use `plot_strobe_diagram()` to visualize cohort selection, and how to adjust visual parameters for publication-ready output.
 
-This vignette assumes you’ve already built a STROBE derivation log using `strobe_initialize()` and `strobe_filter()`.
+The `plot_strobe_diagram` function assumes you’ve already built a STROBE derivation log using `strobe_initialize()` and `strobe_filter()`, and converts the derivation log into a STROBE figure using the `DiagrammeR` package in R.
 
 ## Setup
-
+We start by creating a STROBE-compatible log, again using the cytomegalovirus data from the `medicaldata` package:
 ```{r}
 library(strobe)
 library(dplyr)
@@ -41,52 +41,110 @@ cytomegalovirus_final_df<-cytomegalovirus %>%
 
 ## Basic Usage
 
-The most basic STROBE diagram can be produced by simply calling:
+The most basic STROBE diagram can be produced by simply calling the `plot_strobe_diagram` function in interactive mode: 
 
-```{r}
+```{r eval=FALSE}
 plot_strobe_diagram()
 ```
+
+While this will work in interactive mode, it typically will *not* work well when knitting an R Markdown file.  In that case, we recommend exporting to a file and then directly incorporating the exported file in the R markdown file.
+
+```{r, out.width="50%", fig.align="center"}
+getwd()
+dir.exists("man/figures")  # Should return TRUE
+
+plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
+
+knitr::include_graphics("strobe-diagram_vignette2_1.svg")
+
+```
+
+The `strobe` package supports .png and .svg formats. The SVG format can easily be edited in an SVG editor such as [SVG-Edit](https://svgedit.netlify.app/editor/index.html) or a downloadable SVG editor such as [Inkscape](https://inkscape.org/release/).
+
 
 ## Controlling Box Size
 
 If your text is getting truncated or looks cramped, adjust the box dimensions.
 
-### Wider and Taller Boxes
+### Wider boxes
 
-```{r}
-plot_strobe_diagram(incl_width_min = 4, incl_height = 1.2)
+We can use the `incl_width_min` option to set the minimum width of the inclusion boxes, and the `excl_width_min` box to set the minimum width of the exclusion boxes.  
+
+We first demonstrate the use of the minimum width setting:
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_2a <-plot_strobe_diagram(incl_width_min = 10, excl_width_min = 10, 
+                                   export_file = "strobe-diagram_vignette2_2a.svg")
+knitr::include_graphics("strobe-diagram_vignette2_2a.svg")
+
 ```
+
+### Taller boxes
+
+We can use the `incl_height` option to set the height of the inclusion boxes, and the `excl_height` box to set the minimum width of the exclusion boxes.  
+
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_2b <-plot_strobe_diagram(incl_height = 5, excl_height = 5, 
+                                   export_file = "strobe-diagram_vignette2_2b.svg")
+knitr::include_graphics("strobe-diagram_vignette2_2b.svg")
+
+```
+
 
 ### Locking Size Across Boxes
 
-Locking height/width ensures all boxes are uniform:
+The `DiagrammeR` package, by default, takes input sizes as suggestions and may choose to ignore them.  If you want to force the use of the sizes that you provide, use the `lock_width_min` or `lock_height` options:
 
-```{r}
-plot_strobe_diagram(lock_width_min = TRUE, lock_height = TRUE)
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_3 <-plot_strobe_diagram(lock_width_min = TRUE, 
+                                   lock_height = TRUE, 
+                                   export_file = "strobe-diagram_vignette2_3.svg")
+knitr::include_graphics("strobe-diagram_vignette2_3.svg")
+
 ```
 
-This is especially helpful when you have multi-line text in some nodes but not others.
+While not helpful in this case, it may be helpful when you have multi-line text in some nodes but not others, but want to ensure uniformity of size.
 
 ## Adjusting Font Size
 
 You can separately control font sizes for inclusion and exclusion boxes:
 
-```{r}
-plot_strobe_diagram(incl_fontsize = 16, excl_fontsize = 14)
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_4 <-plot_strobe_diagram(incl_fontsize = 16, 
+                                   excl_fontsize = 14, 
+                                   export_file = "strobe-diagram_vignette2_4.svg")
+knitr::include_graphics("strobe-diagram_vignette2_4.svg")
+
 ```
 
 Use larger fonts for presentation or slide decks:
 
-```{r}
-plot_strobe_diagram(incl_fontsize = 20, excl_fontsize = 18)
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_5a <-plot_strobe_diagram(incl_fontsize = 150, 
+                                   excl_fontsize = 150, 
+                                   export_file = "strobe-diagram_vignette2_5a.svg")
+knitr::include_graphics(svg_file_2_5a)
+
 ```
+
+
+The use of larger fonts will likely require some trial and error with box sizing for optimal results:
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_5b <-plot_strobe_diagram(incl_fontsize = 150, 
+                                   excl_fontsize = 150,
+                                   incl_width_min = 20, excl_width_min = 30, 
+                                   export_file = "strobe-diagram_vignette2_5b.svg")
+knitr::include_graphics(svg_file_2_5b)
+
+```
+
+
 
 ## Combining Size and Font Adjustments
 
 Here’s an example with many settings tuned:
 
-```{r}
-plot_strobe_diagram(
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_6 <-plot_strobe_diagram(
   incl_width_min = 5,
   excl_width_min = 4,
   incl_height = 1.5,
@@ -94,40 +152,26 @@ plot_strobe_diagram(
   incl_fontsize = 18,
   excl_fontsize = 16,
   lock_width_min = TRUE,
-  lock_height = TRUE
+  lock_height = TRUE,
+  export_file = "strobe-diagram_vignette2_6.svg"
 )
+knitr::include_graphics(svg_file_2_6)
+
 ```
-
-## Exporting Diagrams
-
-You can export to PNG or SVG formats. This is helpful for manuscripts or presentations.
-
-### Export as PNG
-
-```{r}
-plot_strobe_diagram(export_file = "strobe_diagram.png")
-```
-
-### Export as SVG
-
-```{r}
-plot_strobe_diagram(export_file = "strobe_diagram.svg")
-```
-
-Make sure to commit these files if your vignette is included in a GitHub-hosted site.
 
 ## Troubleshooting Layout
 
 If boxes are overlapping or lines look incorrect:
 
 ### Try Locking Width/Height
+The `plot_strobe_diagram`'s underlying dependence means that the suggested widths and heights may not be 
 
-```{r}
-plot_strobe_diagram(lock_width_min = TRUE)
-```
-
-```{r}
-plot_strobe_diagram(lock_height = TRUE)
+```{r, out.width="50%", fig.align="center"}
+svg_file_2_6 <-plot_strobe_diagram(lock_width_min = TRUE,
+                                   incl_width_min = 15,
+                                   excl_width_min = 10,
+                                   export_file = "strobe-diagram_vignette2_7.svg")
+knitr::include_graphics("strobe-diagram_vignette2_7.svg")
 ```
 
 ### Use Fewer Words or Manual Line Breaks
@@ -151,6 +195,6 @@ This often improves appearance more than tweaking sizes alone.
 - Tune box dimensions
 - Control font sizes
 - Lock box sizes for uniform appearance
-- Export to PNG or SVG for publication use
+- Export to PNG or SVG for publication use or, in the case of SVG, further editing
 
 These tools help make your derivation logic transparent, reproducible, and ready for review.

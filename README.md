@@ -5,20 +5,20 @@
 
 <!-- badges: end -->
 
-The **strobe** package provides tools for **tracking cohort
+The `strobe` package provides tools for **tracking cohort
 inclusion/exclusion** in observational studies using a STROBE-inspired
 flow. STROBE (Strengthening the Reporting of Observational Studies in
 Epidemiology) is a widely adopted guideline for transparent reporting of
 cohort, case-control, and cross-sectional studies. Learn more at the
 official website: <https://www.strobe-statement.org/>.
 
-The **strobe** package both applies filtering criteria to a
-patient-level data frame while tracking the number of patients excluded
-and included at each step. The package can also print and/or save the
-final STROBE diagram for inclusion in a publication.
+The `strobe` package both applies filtering criteria to a patient-level
+data frame while tracking the number of patients excluded and included
+at each step. The package can also print and/or save the final STROBE
+diagram for inclusion in a publication.
 
 By logging each filtering step—conditions applied, number remaining, and
-number excluded—**strobe** helps ensure reproducibility, clarity, and
+number excluded—`strobe` helps ensure reproducibility, clarity, and
 publication-quality documentation of cohort derivation.
 
 ## Installation
@@ -40,6 +40,11 @@ with:*
 install.packages("medicaldata")
 ```
 
+We now create an SVG plot in R and then plot it. Interactively,
+`the plot_strobe_diagram()` function can also directly create plots that
+can be viewed in the Rstudio viewer, but direct visualization in an .rmd
+file which has been knitted may cause formatting issues.
+
 ``` r
 library(strobe)
 library(medicaldata)
@@ -56,7 +61,11 @@ get_strobe_log()
 #> 1 start <NA>   Initial CMV transplant… <NA>             <NA>          64      NA
 #> 2 step1 start  Age ≥ 30                Excluded: Age <… age >…        63       1
 #> 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23
-plot_strobe_diagram()
+svg_file <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_vignette1_1.svg", 
+                                incl_fontsize = 90, excl_fontsize = 90, 
+                                lock_width_min = TRUE, 
+                                incl_width_min = 20, excl_width_min = 15)
+knitr::include_graphics("man/figures/strobe-diagram_vignette1_1.svg")
 ```
 
-<img src="man/figures/README-strobe-example-1.png" width="100%" />
+<img src="man/figures/strobe-diagram_vignette1_1.svg" width="100%" />

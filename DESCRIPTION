@@ -20,7 +20,8 @@ Imports:
     dplyr,
     tibble,
     DiagrammeR,
-    magrittr
+    magrittr,
+    htmltools
 Suggests: 
     knitr,
     rmarkdown,

@@ -18,23 +18,61 @@ cytomegalovirus_final_df<-cytomegalovirus %>%
   strobe_filter("donor.cmv == 1", "Donor CMV positive", "Excluded: Donor CMV negative") %>%
   strobe_filter("prior.transplant == 0", "No prior transplant", "Excluded: Prior transplant")
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram()
+## ----eval=FALSE---------------------------------------------------------------
+# plot_strobe_diagram()
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(incl_width_min = 4, incl_height = 1.2)
+## ----out.width="50%", fig.align="center"--------------------------------------
+getwd()
+dir.exists("man/figures")  # Should return TRUE
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(lock_width_min = TRUE, lock_height = TRUE)
+plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(incl_fontsize = 16, excl_fontsize = 14)
+knitr::include_graphics("strobe-diagram_vignette2_1.svg")
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(incl_fontsize = 20, excl_fontsize = 18)
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_2a <-plot_strobe_diagram(incl_width_min = 10, excl_width_min = 10, 
+                                   export_file = "strobe-diagram_vignette2_2a.svg")
+knitr::include_graphics("strobe-diagram_vignette2_2a.svg")
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_2b <-plot_strobe_diagram(incl_height = 5, excl_height = 5, 
+                                   export_file = "strobe-diagram_vignette2_2b.svg")
+knitr::include_graphics("strobe-diagram_vignette2_2b.svg")
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_3 <-plot_strobe_diagram(lock_width_min = TRUE, 
+                                   lock_height = TRUE, 
+                                   export_file = "strobe-diagram_vignette2_3.svg")
+knitr::include_graphics("strobe-diagram_vignette2_3.svg")
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_4 <-plot_strobe_diagram(incl_fontsize = 16, 
+                                   excl_fontsize = 14, 
+                                   export_file = "strobe-diagram_vignette2_4.svg")
+knitr::include_graphics("strobe-diagram_vignette2_4.svg")
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_5a <-plot_strobe_diagram(incl_fontsize = 150, 
+                                   excl_fontsize = 150, 
+                                   export_file = "strobe-diagram_vignette2_5a.svg")
+knitr::include_graphics(svg_file_2_5a)
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_5b <-plot_strobe_diagram(incl_fontsize = 150, 
+                                   excl_fontsize = 150,
+                                   incl_width_min = 20, excl_width_min = 30, 
+                                   export_file = "strobe-diagram_vignette2_5b.svg")
+knitr::include_graphics(svg_file_2_5b)
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_6 <-plot_strobe_diagram(
   incl_width_min = 5,
   excl_width_min = 4,
   incl_height = 1.5,
@@ -42,20 +80,18 @@ plot_strobe_diagram(
   incl_fontsize = 18,
   excl_fontsize = 16,
   lock_width_min = TRUE,
-  lock_height = TRUE
+  lock_height = TRUE,
+  export_file = "strobe-diagram_vignette2_6.svg"
 )
+knitr::include_graphics(svg_file_2_6)
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(export_file = "strobe_diagram.png")
 
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(export_file = "strobe_diagram.svg")
-
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(lock_width_min = TRUE)
-
-## -----------------------------------------------------------------------------
-plot_strobe_diagram(lock_height = TRUE)
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_6 <-plot_strobe_diagram(lock_width_min = TRUE,
+                                   incl_width_min = 15,
+                                   excl_width_min = 10,
+                                   export_file = "strobe-diagram_vignette2_7.svg")
+knitr::include_graphics("strobe-diagram_vignette2_7.svg")
 
 ## ----eval=FALSE---------------------------------------------------------------
 # strobe_filter(

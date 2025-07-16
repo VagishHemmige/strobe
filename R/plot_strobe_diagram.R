@@ -17,6 +17,9 @@
 #'   content may still expand boxes beyond these values.
 #' @param lock_height Logical. If `TRUE`, enforces exact box heights for all nodes.
 #'
+#' @importFrom htmltools tagList
+
+#'
 #' @return A `DiagrammeR` graph object representing the STROBE diagram.
 #' @export
 
@@ -47,8 +50,8 @@ plot_strobe_diagram <- function(export_file = NULL,
     "  rankdir=TB;\n",
     "  ranksep=1.5;\n",
     "  nodesep=3;\n",
-    "  node [fontname=Helvetica];\n",
-    "  edge [fontname=Helvetica];\n",
+    "  node [fontname=Arial];\n",
+    "  edge [fontname=Arial];\n",
     "  \n"
   )
 
@@ -193,6 +196,28 @@ plot_strobe_diagram <- function(export_file = NULL,
     }
   }
 
-  # Render and display the diagram (must be last for printing)
-  DiagrammeR::grViz(dot_code)
+  g <- DiagrammeR::grViz(dot_code)
+
+
+  # Handle different rendering contexts
+  if (!interactive() && requireNamespace("knitr", quietly = TRUE) && knitr::is_html_output()) {
+    # For R Markdown HTML knitting, convert to PNG to avoid widget issues
+    if (requireNamespace("DiagrammeRsvg", quietly = TRUE) &&
+        requireNamespace("rsvg", quietly = TRUE)) {
+      temp_file <- tempfile(fileext = ".png")
+      svg <- DiagrammeRsvg::export_svg(g)
+      rsvg::rsvg_png(charToRaw(svg), file = temp_file)
+      return(knitr::include_graphics(temp_file))
+    } else {
+      # If conversion packages not available, try widget approach
+      if (requireNamespace("htmltools", quietly = TRUE)) {
+        return(htmltools::tagList(g))
+      } else {
+        return(g)
+      }
+    }
+  } else {
+    # Interactive mode or non-HTML output
+    return(g)
+  }
 }
