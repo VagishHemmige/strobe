@@ -142,15 +142,12 @@ cytomegalovirus data from the <code>medicaldata</code> package:</p>
 we recommend exporting to a file and then directly incorporating the
 exported file in the R markdown file.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "C:/Users/katta/Desktop/Einstein research/strobe/vignettes"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.exists</a></span><span class="op">(</span><span class="st">"man/figures"</span><span class="op">)</span>  <span class="co"># Should return TRUE</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span>
-<span></span>
-<span><span class="va">svg_file_2_1</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_1.svg"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_1.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_1.svg" width="50%" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_1.svg"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../../AppData/Local/Temp/Rtmp8QY91A/file61d8306539.png" width="50%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_1.svg" width="50%" style="display: block; margin: auto;"></p>
 <p>The <code>strobe</code> package supports .png and .svg formats. The
 SVG format can easily be edited in an SVG editor such as <a href="https://svgedit.netlify.app/editor/index.html" class="external-link">SVG-Edit</a> or a
 downloadable SVG editor such as <a href="https://inkscape.org/release/" class="external-link">Inkscape</a>.</p>
@@ -167,11 +164,12 @@ dimensions.</p>
 width of the inclusion boxes, and the <code>excl_width_min</code> box to
 set the minimum width of the exclusion boxes.</p>
 <p>We first demonstrate the use of the minimum width setting:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_2a</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_width_min <span class="op">=</span> <span class="fl">10</span>, excl_width_min <span class="op">=</span> <span class="fl">10</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_2a.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_2a.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_2a.svg" width="50%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_2a.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_width_min <span class="op">=</span> <span class="fl">10</span>, excl_width_min <span class="op">=</span> <span class="fl">10</span>, </span>
+<span>                                   export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_2a.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="taller-boxes">Taller boxes<a class="anchor" aria-label="anchor" href="#taller-boxes"></a>
@@ -179,11 +177,12 @@ set the minimum width of the exclusion boxes.</p>
 <p>We can use the <code>incl_height</code> option to set the height of
 the inclusion boxes, and the <code>excl_height</code> box to set the
 minimum height of the exclusion boxes.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_2b</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_height <span class="op">=</span> <span class="fl">5</span>, excl_height <span class="op">=</span> <span class="fl">5</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_2b.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_2b.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_2b.svg" width="50%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_2b.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_height <span class="op">=</span> <span class="fl">5</span>, excl_height <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_2b.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="locking-size-across-boxes">Locking Size Across Boxes<a class="anchor" aria-label="anchor" href="#locking-size-across-boxes"></a>
@@ -192,12 +191,13 @@ minimum height of the exclusion boxes.</p>
 suggestions and may choose to ignore them. If you want to force the use
 of the sizes that you provide, use the <code>lock_width_min</code> or
 <code>lock_height</code> options:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_3</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_3.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                   lock_height <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_3.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_3.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_3.svg" width="50%" style="display: block; margin: auto;"></p>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_3.svg" width="50%" style="display: block; margin: auto;"></p>
 <p>While not helpful in this case, it may be helpful when you have
 multi-line text in some nodes but not others, but want to ensure
 uniformity of size.</p>
@@ -208,35 +208,39 @@ uniformity of size.</p>
 </h2>
 <p>You can separately control font sizes for inclusion and exclusion
 boxes:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_4</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">16</span>, </span>
-<span>                                   excl_fontsize <span class="op">=</span> <span class="fl">14</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_4.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_4.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_4.svg" width="50%" style="display: block; margin: auto;"></p>
-<p>Use larger fonts for presentation or slide decks:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_5a</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">150</span>, </span>
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_4.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">16</span>, </span>
+<span>                                   excl_fontsize <span class="op">=</span> <span class="fl">14</span>, </span>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_4.svg" width="50%" style="display: block; margin: auto;"></p>
+<p>Use larger fonts for presentation or slide decks:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_5a.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_5a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">150</span>, </span>
 <span>                                   excl_fontsize <span class="op">=</span> <span class="fl">150</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_5a.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">svg_file_2_5a</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../AppData/Local/Temp/RtmpsthdXW/file3f0015c319a6.png" width="50%" style="display: block; margin: auto;"></p>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_5a.svg" width="50%" style="display: block; margin: auto;"></p>
 <p>The use of larger fonts will likely require some trial and error with
 box sizing for optimal results:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_5b</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">150</span>, </span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_5b.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_5b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>incl_fontsize <span class="op">=</span> <span class="fl">150</span>, </span>
 <span>                                   excl_fontsize <span class="op">=</span> <span class="fl">150</span>,</span>
 <span>                                   incl_width_min <span class="op">=</span> <span class="fl">20</span>, excl_width_min <span class="op">=</span> <span class="fl">30</span>, </span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_5b.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">svg_file_2_5b</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../AppData/Local/Temp/RtmpsthdXW/file3f005f8f3a2d.png" width="50%" style="display: block; margin: auto;"></p>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_5b.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="combining-size-and-font-adjustments">Combining Size and Font Adjustments<a class="anchor" aria-label="anchor" href="#combining-size-and-font-adjustments"></a>
 </h2>
 <p>Here’s an example with many settings tuned:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_6</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_6.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span></span>
 <span>  incl_width_min <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  excl_width_min <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  incl_height <span class="op">=</span> <span class="fl">1.5</span>,</span>
@@ -245,10 +249,10 @@ box sizing for optimal results:</p>
 <span>  excl_fontsize <span class="op">=</span> <span class="fl">16</span>,</span>
 <span>  lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  lock_height <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_6.svg"</span></span>
+<span> export_file <span class="op">=</span> <span class="va">fig_path</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">svg_file_2_6</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../AppData/Local/Temp/RtmpsthdXW/file3f007211522e.png" width="50%" style="display: block; margin: auto;"></p>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_6.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="accounting-for-terminal-branching">Accounting for terminal branching<a class="anchor" aria-label="anchor" href="#accounting-for-terminal-branching"></a>
@@ -257,17 +261,17 @@ box sizing for optimal results:</p>
 branching when plotting–the <code>plot_strobe_diagram</code> function is
 able to handle the details based on the structure of the strobe
 flow:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co">#Add a terminal branch</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Add a terminal branch</span></span>
 <span><span class="va">cytomegalovirus_df</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/create_terminal_branch.html">create_terminal_branch</a></span><span class="op">(</span><span class="va">cytomegalovirus_df</span>, variable <span class="op">=</span> <span class="st">"cgvhd"</span>, label_prefix<span class="op">=</span><span class="st">"CGVHD value:"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">svg_file_2_7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_7.svg"</span>, </span>
+<span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_7.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="va">fig_path</span>, </span>
 <span>                                incl_fontsize <span class="op">=</span> <span class="fl">90</span>, excl_fontsize <span class="op">=</span> <span class="fl">90</span>, </span>
 <span>                                lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                incl_width_min <span class="op">=</span> <span class="fl">20</span>, excl_width_min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_7.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_7.svg" width="50%" style="display: block; margin: auto;"></p>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_7.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="troubleshooting-layout">Troubleshooting Layout<a class="anchor" aria-label="anchor" href="#troubleshooting-layout"></a>
@@ -280,20 +284,21 @@ flow:</p>
 <code>DiagrammeR</code> means that the suggested widths and heights may
 not be followed precisely unless the <code>lock_width_min</code> or
 <code>lock_height</code> options are used:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">svg_file_2_8</span> <span class="op">&lt;-</span><span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fig_path</span> <span class="op">&lt;-</span> <span class="fu">create_fig_path</span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_8.svg"</span><span class="op">)</span></span>
+<span><span class="va">svg_file_2_8</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                                   incl_width_min <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>                                   excl_width_min <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>                                   export_file <span class="op">=</span> <span class="st">"strobe-diagram_vignette2_8.svg"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"strobe-diagram_vignette2_8.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../Einstein%20research/strobe/articles/strobe-diagram_vignette2_8.svg" width="50%" style="display: block; margin: auto;"></p>
+<span>                                  export_file <span class="op">=</span> <span class="va">fig_path</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="va">fig_path</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../../../Einstein%20research/strobe/articles/figures/strobe-diagram_vignette2_8.svg" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="use-fewer-words-or-manual-line-breaks">Use Fewer Words or Manual Line Breaks<a class="anchor" aria-label="anchor" href="#use-fewer-words-or-manual-line-breaks"></a>
 </h3>
 <p>Use <code>\n</code> in labels to manually split long lines.
 Example:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/strobe_filter.html">strobe_filter</a></span><span class="op">(</span></span>
 <span>  condition <span class="op">=</span> <span class="st">"..."</span>,</span>
 <span>  inclusion_label <span class="op">=</span> <span class="st">"Eligible recipients\nwith CMV+ donors"</span>,</span>
