@@ -1,4 +1,6 @@
 url: https://vagishhemmige.github.io/strobe
 template:
   bootstrap: 5
-
+  includes:
+    in_header: |
+      <meta name="google-site-verification" content="TBumihuxSFxK8muRvdo69ca7bmvzWmy-3OMfCZ2692A" />
