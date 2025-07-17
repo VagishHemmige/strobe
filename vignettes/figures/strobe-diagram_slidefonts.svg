@@ -13,8 +13,8 @@
 <g id="node1" class="node">
 <title>incl1</title>
 <polygon fill="none" stroke="#000000" points="1578.33,-4356 -.11,-4356 -.11,-3968 1578.33,-3968 1578.33,-4356"/>
-<text text-anchor="middle" x="789.11" y="-4207" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">All transplant recipients</text>
-<text text-anchor="middle" x="789.11" y="-4027" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 64)</text>
+<text text-anchor="middle" x="789.11" y="-4207" font-family="Arial" font-size="150.00" fill="#000000">All transplant recipients</text>
+<text text-anchor="middle" x="789.11" y="-4027" font-family="Arial" font-size="150.00" fill="#000000">(n = 64)</text>
 </g>
 <!-- mid1 -->
 <!-- incl1&#45;&gt;mid1 -->
@@ -26,8 +26,8 @@
 <g id="node2" class="node">
 <title>incl2</title>
 <polygon fill="none" stroke="#000000" points="1186.695,-3364 391.525,-3364 391.525,-2976 1186.695,-2976 1186.695,-3364"/>
-<text text-anchor="middle" x="789.11" y="-3215" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Age 18–65</text>
-<text text-anchor="middle" x="789.11" y="-3035" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 63)</text>
+<text text-anchor="middle" x="789.11" y="-3215" font-family="Arial" font-size="150.00" fill="#000000">Age 18–65</text>
+<text text-anchor="middle" x="789.11" y="-3035" font-family="Arial" font-size="150.00" fill="#000000">(n = 63)</text>
 </g>
 <!-- mid2 -->
 <!-- incl2&#45;&gt;mid2 -->
@@ -39,8 +39,8 @@
 <g id="node3" class="node">
 <title>incl3</title>
 <polygon fill="none" stroke="#000000" points="1244.9601,-2372 333.2599,-2372 333.2599,-1984 1244.9601,-1984 1244.9601,-2372"/>
-<text text-anchor="middle" x="789.11" y="-2223" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">CMV positive</text>
-<text text-anchor="middle" x="789.11" y="-2043" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 39)</text>
+<text text-anchor="middle" x="789.11" y="-2223" font-family="Arial" font-size="150.00" fill="#000000">CMV positive</text>
+<text text-anchor="middle" x="789.11" y="-2043" font-family="Arial" font-size="150.00" fill="#000000">(n = 39)</text>
 </g>
 <!-- mid3 -->
 <!-- incl3&#45;&gt;mid3 -->
@@ -52,8 +52,8 @@
 <g id="node4" class="node">
 <title>incl4</title>
 <polygon fill="none" stroke="#000000" points="1470.0201,-1380 108.1999,-1380 108.1999,-992 1470.0201,-992 1470.0201,-1380"/>
-<text text-anchor="middle" x="789.11" y="-1231" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Donor CMV positive</text>
-<text text-anchor="middle" x="789.11" y="-1051" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 28)</text>
+<text text-anchor="middle" x="789.11" y="-1231" font-family="Arial" font-size="150.00" fill="#000000">Donor CMV positive</text>
+<text text-anchor="middle" x="789.11" y="-1051" font-family="Arial" font-size="150.00" fill="#000000">(n = 28)</text>
 </g>
 <!-- mid4 -->
 <!-- incl4&#45;&gt;mid4 -->
@@ -65,36 +65,36 @@
 <g id="node5" class="node">
 <title>incl5</title>
 <polygon fill="none" stroke="#000000" points="1420.0901,-388 158.1299,-388 158.1299,0 1420.0901,0 1420.0901,-388"/>
-<text text-anchor="middle" x="789.11" y="-239" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">No prior transplant</text>
-<text text-anchor="middle" x="789.11" y="-59" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 23)</text>
+<text text-anchor="middle" x="789.11" y="-239" font-family="Arial" font-size="150.00" fill="#000000">No prior transplant</text>
+<text text-anchor="middle" x="789.11" y="-59" font-family="Arial" font-size="150.00" fill="#000000">(n = 23)</text>
 </g>
 <!-- excl1 -->
 <g id="node6" class="node">
 <title>excl1</title>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="2750.93,-3860 1005.29,-3860 1005.29,-3472 2750.93,-3472 2750.93,-3860"/>
-<text text-anchor="middle" x="1878.11" y="-3711" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Excluded: Outside 18–65</text>
-<text text-anchor="middle" x="1878.11" y="-3531" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 1)</text>
+<text text-anchor="middle" x="1878.11" y="-3711" font-family="Arial" font-size="150.00" fill="#000000">Excluded: Outside 18–65</text>
+<text text-anchor="middle" x="1878.11" y="-3531" font-family="Arial" font-size="150.00" fill="#000000">(n = 1)</text>
 </g>
 <!-- excl2 -->
 <g id="node7" class="node">
 <title>excl2</title>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="2675.175,-2868 1005.045,-2868 1005.045,-2480 2675.175,-2480 2675.175,-2868"/>
-<text text-anchor="middle" x="1840.11" y="-2719" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Excluded: CMV negative</text>
-<text text-anchor="middle" x="1840.11" y="-2539" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 24)</text>
+<text text-anchor="middle" x="1840.11" y="-2719" font-family="Arial" font-size="150.00" fill="#000000">Excluded: CMV negative</text>
+<text text-anchor="middle" x="1840.11" y="-2539" font-family="Arial" font-size="150.00" fill="#000000">(n = 24)</text>
 </g>
 <!-- excl3 -->
 <g id="node8" class="node">
 <title>excl3</title>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="3125.235,-1876 1004.985,-1876 1004.985,-1488 3125.235,-1488 3125.235,-1876"/>
-<text text-anchor="middle" x="2065.11" y="-1727" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Excluded: Donor CMV negative</text>
-<text text-anchor="middle" x="2065.11" y="-1547" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 11)</text>
+<text text-anchor="middle" x="2065.11" y="-1727" font-family="Arial" font-size="150.00" fill="#000000">Excluded: Donor CMV negative</text>
+<text text-anchor="middle" x="2065.11" y="-1547" font-family="Arial" font-size="150.00" fill="#000000">(n = 11)</text>
 </g>
 <!-- excl4 -->
 <g id="node9" class="node">
 <title>excl4</title>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="2750.615,-884 1005.605,-884 1005.605,-496 2750.615,-496 2750.615,-884"/>
-<text text-anchor="middle" x="1878.11" y="-735" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">Excluded: Prior transplant</text>
-<text text-anchor="middle" x="1878.11" y="-555" font-family="Helvetica,sans-Serif" font-size="150.00" fill="#000000">(n = 5)</text>
+<text text-anchor="middle" x="1878.11" y="-735" font-family="Arial" font-size="150.00" fill="#000000">Excluded: Prior transplant</text>
+<text text-anchor="middle" x="1878.11" y="-555" font-family="Arial" font-size="150.00" fill="#000000">(n = 5)</text>
 </g>
 <!-- mid1&#45;&gt;incl2 -->
 <g id="edge2" class="edge">
