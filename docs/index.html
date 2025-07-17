@@ -103,7 +103,7 @@
 <p><em>Note: The example below requires the <code>medicaldata</code> package. Install it with:</em></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"medicaldata"</span><span class="op">)</span></span></code></pre></div>
-<p>We now create an SVG plot in R and then plot it. Interactively, <code>the plot_strobe_diagram()</code> function can also directly create plots that can be viewed in the Rstudio viewer, but direct visualization in an .rmd file which has been knitted may cause formatting issues.</p>
+<p>We now create an SVG plot in R and then print the strobe log with the <code>get_strobe_log</code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/VagishHemmige/strobe" class="external-link">strobe</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://higgi13425.github.io/medicaldata/" class="external-link">medicaldata</a></span><span class="op">)</span></span>
@@ -119,13 +119,37 @@
 <span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;      &lt;int&gt;   &lt;int&gt;</span></span>
 <span><span class="co">#&gt; 1 start &lt;NA&gt;   Initial CMV transplant… &lt;NA&gt;             &lt;NA&gt;          64      NA</span></span>
 <span><span class="co">#&gt; 2 step1 start  Age ≥ 30                Excluded: Age &lt;… age &gt;…        63       1</span></span>
-<span><span class="co">#&gt; 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23</span></span>
-<span><span class="va">svg_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="st">"man/figures/strobe-diagram_vignette1_1.svg"</span>, </span>
+<span><span class="co">#&gt; 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23</span></span></code></pre></div>
+<p>We plot the STROBE diagram associated with the above code. Interactively, the <code><a href="reference/plot_strobe_diagram.html">plot_strobe_diagram()</a></code> function can also directly create plots that can be viewed in the Rstudio viewer, but direct visualization in an .rmd file which has been knitted may cause formatting issues.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">svg_file_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="st">"man/figures/strobe-diagram_readme1_1.svg"</span>, </span>
 <span>                                incl_fontsize <span class="op">=</span> <span class="fl">90</span>, excl_fontsize <span class="op">=</span> <span class="fl">90</span>, </span>
 <span>                                lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                                incl_width_min <span class="op">=</span> <span class="fl">20</span>, excl_width_min <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/strobe-diagram_vignette1_1.svg"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/strobe-diagram_vignette1_1.svg" width="100%"></p>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/strobe-diagram_readme1_1.svg"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/strobe-diagram_readme1_1.svg" width="100%"></p>
+<p>The <code>strobe</code> package can also support terminal branching based on the value of a factor variable, if the factor variable has six or fewer distinct values:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Add terminal branch based on the value of the variable</span></span>
+<span></span>
+<span><span class="va">df</span><span class="op">&lt;-</span><span class="fu"><a href="reference/create_terminal_branch.html">create_terminal_branch</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"cgvhd"</span>, label_prefix<span class="op">=</span><span class="st">"CGVHD value:"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/get_strobe_log.html">get_strobe_log</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 7</span></span>
+<span><span class="co">#&gt;   id    parent inclusion_label         exclusion_reason filter remaining dropped</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;      &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 start &lt;NA&gt;   Initial CMV transplant… &lt;NA&gt;             &lt;NA&gt;          64      NA</span></span>
+<span><span class="co">#&gt; 2 step1 start  Age ≥ 30                Excluded: Age &lt;… age &gt;…        63       1</span></span>
+<span><span class="co">#&gt; 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23</span></span>
+<span><span class="co">#&gt; 4 step3 step2  CGVHD value:0           &lt;NA&gt;             &lt;NA&gt;          22      NA</span></span>
+<span><span class="co">#&gt; 5 step4 step2  CGVHD value:1           &lt;NA&gt;             &lt;NA&gt;          18      NA</span></span></code></pre></div>
+<p>The <code>plot_strobe_diagram</code> function can handle terminal branching:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">svg_file_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_strobe_diagram.html">plot_strobe_diagram</a></span><span class="op">(</span>export_file <span class="op">=</span> <span class="st">"man/figures/strobe-diagram_readme1_2.svg"</span>, </span>
+<span>                                incl_fontsize <span class="op">=</span> <span class="fl">90</span>, excl_fontsize <span class="op">=</span> <span class="fl">90</span>, </span>
+<span>                                lock_width_min <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                                incl_width_min <span class="op">=</span> <span class="fl">20</span>, excl_width_min <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/strobe-diagram_readme1_2.svg"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/strobe-diagram_readme1_2.svg" width="100%"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

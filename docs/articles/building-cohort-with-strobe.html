@@ -141,7 +141,7 @@ to demonstrate results.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">cytomegalovirus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Create cohort</span></span>
-<span><span class="va">cytomegalovirus</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">df</span><span class="op">&lt;-</span><span class="va">cytomegalovirus</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/strobe_initialize.html">strobe_initialize</a></span><span class="op">(</span>inclusion_label <span class="op">=</span> <span class="st">"Initial transplant cohort"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/strobe_filter.html">strobe_filter</a></span><span class="op">(</span></span>
 <span>    condition <span class="op">=</span> <span class="st">"age &gt;= 30"</span>,</span>
@@ -158,9 +158,10 @@ to demonstrate results.</p>
 <span>    inclusion_label <span class="op">=</span> <span class="st">"No prior transplant"</span>,</span>
 <span>    exclusion_reason <span class="op">=</span> <span class="st">"Excluded: Prior transplant"</span></span>
 <span>  <span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">recipient.cmv</span>, <span class="va">donor.cmv</span>, <span class="va">prior.transplant</span>, <span class="va">sex</span>, <span class="va">race</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co">#Show first rows and selected columns of final DF</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">recipient.cmv</span>, <span class="va">donor.cmv</span>, <span class="va">prior.transplant</span>, <span class="va">sex</span>, <span class="va">race</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="co">#Show first rows and selected columns of final DF</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   age recipient.cmv donor.cmv prior.transplant sex race</span></span>
 <span><span class="co">#&gt; 1  61             1         0                0   1    0</span></span>
 <span><span class="co">#&gt; 3  63             1         1                0   0    1</span></span>
@@ -241,6 +242,35 @@ to demonstrate results.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> step3 step2  Donor CMV positive      Excluded: Donor… donor…        28      11</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> step4 step3  No prior transplant     Excluded: Prior… prior…        23       5</span></span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="terminal-branching">Terminal branching<a class="anchor" aria-label="anchor" href="#terminal-branching"></a>
+</h3>
+<p>Not uncommonly, the terminal step of a STROBE diagram is used, not to
+show inclusions or exclusions, but how the final cohort is stratified
+based on the value of a factor variable. The
+<code>create_terminal_branch</code> function is designed for this
+purpose, and can handle factor variables with up to six levels
+(including missing values).</p>
+<p>The optional label_prefix argument allows you to prepend text (e.g.,
+the variable name) to each terminal group label. For example, setting
+<code>label_prefix</code> = “cgvhd:” will produce labels like ‘cgvhd: 0’
+and ‘cgvhd: 1’.</p>
+<p>Below, we use the variable <code>cgvhd</code> (chronic graft vs. host
+disease) to stratify the final inclusion cohort into two groups:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">df</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/create_terminal_branch.html">create_terminal_branch</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"cgvhd"</span>, label_prefix<span class="op">=</span><span class="st">"CGVHD value:"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/get_strobe_log.html">get_strobe_log</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
+<span><span class="co">#&gt;   id    parent inclusion_label         exclusion_reason filter remaining dropped</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> start <span style="color: #BB0000;">NA</span>     All transplant recipie… <span style="color: #BB0000;">NA</span>               <span style="color: #BB0000;">NA</span>            64      <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> step1 start  Age 18–65               Excluded: Outsi… age &gt;…        63       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> step2 step1  CMV positive            Excluded: CMV n… recip…        39      24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> step3 step2  Donor CMV positive      Excluded: Donor… donor…        28      11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> step4 step3  No prior transplant     Excluded: Prior… prior…        23       5</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="see-also">See Also<a class="anchor" aria-label="anchor" href="#see-also"></a>
@@ -249,6 +279,7 @@ to demonstrate results.</p>
 <li><code><a href="../reference/strobe_initialize.html">?strobe_initialize</a></code></li>
 <li><code><a href="../reference/strobe_filter.html">?strobe_filter</a></code></li>
 <li><code><a href="../reference/get_strobe_log.html">?get_strobe_log</a></code></li>
+<li><code>?create_factor_variable</code></li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

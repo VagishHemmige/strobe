@@ -31,7 +31,7 @@ library(medicaldata)
 
 data(cytomegalovirus)
 
-cytomegalovirus_final_df<-cytomegalovirus %>%
+cytomegalovirus_df<-cytomegalovirus %>%
   strobe_initialize("All transplant recipients") %>%
   strobe_filter("age >= 18 & age <= 65", "Age 18–65", "Excluded: Outside 18–65") %>%
   strobe_filter("recipient.cmv == 1", "CMV positive", "Excluded: CMV negative") %>%
@@ -53,7 +53,7 @@ While this will work in interactive mode, it typically will *not* work well when
 getwd()
 dir.exists("man/figures")  # Should return TRUE
 
-plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
+svg_file_2_1 <-plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
 
 knitr::include_graphics("strobe-diagram_vignette2_1.svg")
 
@@ -80,7 +80,7 @@ knitr::include_graphics("strobe-diagram_vignette2_2a.svg")
 
 ### Taller boxes
 
-We can use the `incl_height` option to set the height of the inclusion boxes, and the `excl_height` box to set the minimum width of the exclusion boxes.  
+We can use the `incl_height` option to set the height of the inclusion boxes, and the `excl_height` box to set the minimum height of the exclusion boxes.  
 
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_2b <-plot_strobe_diagram(incl_height = 5, excl_height = 5, 
@@ -159,19 +159,37 @@ knitr::include_graphics(svg_file_2_6)
 
 ```
 
+## Accounting for terminal branching
+
+You don't have to do anything special to account for terminal branching when plotting--the `plot_strobe_diagram` function is able to handle the details based on the structure of the strobe flow:
+
+```{r, out.width="50%", fig.align="center"}
+
+#Add a terminal branch
+cytomegalovirus_df<-create_terminal_branch(cytomegalovirus_df, variable = "cgvhd", label_prefix="CGVHD value:")
+
+svg_file_2_7 <- plot_strobe_diagram(export_file = "strobe-diagram_vignette2_7.svg", 
+                                incl_fontsize = 90, excl_fontsize = 90, 
+                                lock_width_min = TRUE, 
+                                incl_width_min = 20, excl_width_min = 20)
+knitr::include_graphics("strobe-diagram_vignette2_7.svg")
+
+
+```
+
 ## Troubleshooting Layout
 
 If boxes are overlapping or lines look incorrect:
 
 ### Try Locking Width/Height
-The `plot_strobe_diagram`'s underlying dependence means that the suggested widths and heights may not be 
+The `plot_strobe_diagram`'s underlying dependence on `DiagrammeR` means that the suggested widths and heights may not be followed precisely unless the `lock_width_min` or `lock_height` options are used:
 
 ```{r, out.width="50%", fig.align="center"}
-svg_file_2_6 <-plot_strobe_diagram(lock_width_min = TRUE,
+svg_file_2_8 <-plot_strobe_diagram(lock_width_min = TRUE,
                                    incl_width_min = 15,
                                    excl_width_min = 10,
-                                   export_file = "strobe-diagram_vignette2_7.svg")
-knitr::include_graphics("strobe-diagram_vignette2_7.svg")
+                                   export_file = "strobe-diagram_vignette2_8.svg")
+knitr::include_graphics("strobe-diagram_vignette2_8.svg")
 ```
 
 ### Use Fewer Words or Manual Line Breaks

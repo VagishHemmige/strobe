@@ -61,18 +61,49 @@ get_strobe_log()
 #> 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23
 ```
 
-Finally, we plot the STROBE diagram associated with the above code.
+We plot the STROBE diagram associated with the above code.
 Interactively, the `plot_strobe_diagram()` function can also directly
 create plots that can be viewed in the Rstudio viewer, but direct
 visualization in an .rmd file which has been knitted may cause
 formatting issues.
 
 ``` r
-svg_file <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_vignette1_1.svg", 
+svg_file_1 <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_readme1_1.svg", 
                                 incl_fontsize = 90, excl_fontsize = 90, 
                                 lock_width_min = TRUE, 
                                 incl_width_min = 20, excl_width_min = 15)
-knitr::include_graphics("man/figures/strobe-diagram_vignette1_1.svg")
+knitr::include_graphics("man/figures/strobe-diagram_readme1_1.svg")
 ```
 
-<img src="man/figures/strobe-diagram_vignette1_1.svg" width="100%" />
+<img src="man/figures/strobe-diagram_readme1_1.svg" width="100%" />
+
+The `strobe` package can also support terminal branching based on the
+value of a factor variable, if the factor variable has six or fewer
+distinct values:
+
+``` r
+#Add terminal branch based on the value of the variable
+
+df<-create_terminal_branch(df, variable = "cgvhd", label_prefix="CGVHD value:")
+get_strobe_log()
+#> # A tibble: 5 × 7
+#>   id    parent inclusion_label         exclusion_reason filter remaining dropped
+#>   <chr> <chr>  <chr>                   <chr>            <chr>      <int>   <int>
+#> 1 start <NA>   Initial CMV transplant… <NA>             <NA>          64      NA
+#> 2 step1 start  Age ≥ 30                Excluded: Age <… age >…        63       1
+#> 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23
+#> 4 step3 step2  CGVHD value:0           <NA>             <NA>          22      NA
+#> 5 step4 step2  CGVHD value:1           <NA>             <NA>          18      NA
+```
+
+The `plot_strobe_diagram` function can handle terminal branching:
+
+``` r
+svg_file_2 <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_readme1_2.svg", 
+                                incl_fontsize = 90, excl_fontsize = 90, 
+                                lock_width_min = TRUE, 
+                                incl_width_min = 20, excl_width_min = 15)
+knitr::include_graphics("man/figures/strobe-diagram_readme1_2.svg")
+```
+
+<img src="man/figures/strobe-diagram_readme1_2.svg" width="100%" />

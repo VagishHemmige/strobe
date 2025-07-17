@@ -17,7 +17,7 @@ library(medicaldata)
 data(cytomegalovirus)
 
 #Create cohort
-cytomegalovirus %>%
+df<-cytomegalovirus %>%
   strobe_initialize(inclusion_label = "Initial transplant cohort") %>%
   strobe_filter(
     condition = "age >= 30",
@@ -34,9 +34,10 @@ cytomegalovirus %>%
     inclusion_label = "No prior transplant",
     exclusion_reason = "Excluded: Prior transplant"
   )%>%
-  dplyr::select(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)%>%
-  #Show first rows and selected columns of final DF
-  head()
+  dplyr::select(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)
+  
+#Show first rows and selected columns of final DF
+head(df)
 
 ## ----review_log, eval=requireNamespace("medicaldata", quietly = TRUE)---------
 get_strobe_log()
@@ -70,4 +71,12 @@ cytomegalovirus %>%
 
 ## ----review_log_2, eval=requireNamespace("medicaldata", quietly = TRUE)-------
 get_strobe_log()
+
+## ----eval=requireNamespace("medicaldata", quietly = TRUE)---------------------
+
+df<-create_terminal_branch(df, variable = "cgvhd", label_prefix="CGVHD value:")
+
+get_strobe_log()
+
+
 

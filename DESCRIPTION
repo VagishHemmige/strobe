@@ -21,7 +21,8 @@ Imports:
     tibble,
     DiagrammeR,
     magrittr,
-    htmltools
+    htmltools,
+    rlang
 Suggests: 
     knitr,
     rmarkdown,

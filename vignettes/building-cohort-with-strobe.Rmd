@@ -52,7 +52,7 @@ library(medicaldata)
 data(cytomegalovirus)
 
 #Create cohort
-cytomegalovirus %>%
+df<-cytomegalovirus %>%
   strobe_initialize(inclusion_label = "Initial transplant cohort") %>%
   strobe_filter(
     condition = "age >= 30",
@@ -69,9 +69,10 @@ cytomegalovirus %>%
     inclusion_label = "No prior transplant",
     exclusion_reason = "Excluded: Prior transplant"
   )%>%
-  dplyr::select(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)%>%
-  #Show first rows and selected columns of final DF
-  head()
+  dplyr::select(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)
+  
+#Show first rows and selected columns of final DF
+head(df)
 ```
 
 ### Reviewing the Filtering Log
@@ -124,8 +125,25 @@ The filter log from the above pipeline is below:
 get_strobe_log()
 ```
 
-## See Also
 
+### Terminal branching
+Not uncommonly, the terminal step of a STROBE diagram is used, not to show inclusions or exclusions, but how the final cohort is stratified based on the value of a factor variable.  The `create_terminal_branch` function is designed for this purpose, and can handle factor variables with up to six levels (including missing values).  
+
+The optional label_prefix argument allows you to prepend text (e.g., the variable name) to each terminal group label. For example, setting `label_prefix` = "cgvhd: " will produce labels like 'cgvhd: 0' and 'cgvhd: 1'.
+
+Below, we use the variable `cgvhd` (chronic graft vs. host disease) to stratify the final inclusion cohort into two groups:
+
+```{r, eval=requireNamespace("medicaldata", quietly = TRUE)}
+
+df<-create_terminal_branch(df, variable = "cgvhd", label_prefix="CGVHD value:")
+
+get_strobe_log()
+
+
+```
+
+## See Also
 - `?strobe_initialize`
 - `?strobe_filter`
 - `?get_strobe_log`
+- `?create_factor_variable`

@@ -39,11 +39,12 @@ _Note: The example below requires the `medicaldata` package. Install it with:_
 
 ```{r eval=FALSE}
 install.packages("medicaldata")
+
 ```
 
 
 We now create an SVG plot in R and then print the strobe log with the `get_strobe_log` function.  
-```{r strobe-example, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
+```{r strobe-example-1, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
 library(strobe)
 library(medicaldata)
 data(cytomegalovirus)
@@ -55,13 +56,31 @@ df <- strobe_filter(df, "recipient.cmv == 1", "Recipient CMV positive", "Exclude
 get_strobe_log()
 ```
 
-Finally, we plot the STROBE diagram associated with the above code.  Interactively, the `plot_strobe_diagram()` function can also directly create plots that can be viewed in the Rstudio viewer, but direct visualization in an .rmd file which has been knitted may cause formatting issues.
+We plot the STROBE diagram associated with the above code.  Interactively, the `plot_strobe_diagram()` function can also directly create plots that can be viewed in the Rstudio viewer, but direct visualization in an .rmd file which has been knitted may cause formatting issues.
 
-```{r strobe-plot, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
-svg_file <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_vignette1_1.svg", 
+```{r strobe-plot-1, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
+svg_file_1 <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_readme1_1.svg", 
                                 incl_fontsize = 90, excl_fontsize = 90, 
                                 lock_width_min = TRUE, 
                                 incl_width_min = 20, excl_width_min = 15)
-knitr::include_graphics("man/figures/strobe-diagram_vignette1_1.svg")
+knitr::include_graphics("man/figures/strobe-diagram_readme1_1.svg")
 ```
 
+
+The `strobe` package can also support terminal branching based on the value of a factor variable, if the factor variable has six or fewer distinct values:
+```{r terminal, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
+#Add terminal branch based on the value of the variable
+
+df<-create_terminal_branch(df, variable = "cgvhd", label_prefix="CGVHD value:")
+get_strobe_log()
+
+```
+
+The `plot_strobe_diagram` function can handle terminal branching:
+```{r strobe-plot-2, eval = requireNamespace("medicaldata", quietly = TRUE), message = FALSE, warning = FALSE}
+svg_file_2 <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_readme1_2.svg", 
+                                incl_fontsize = 90, excl_fontsize = 90, 
+                                lock_width_min = TRUE, 
+                                incl_width_min = 20, excl_width_min = 15)
+knitr::include_graphics("man/figures/strobe-diagram_readme1_2.svg")
+```

@@ -386,7 +386,7 @@ to demonstrate results.</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">data</span>(cytomegalovirus)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#Create cohort</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>cytomegalovirus <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>df<span class="ot">&lt;-</span>cytomegalovirus <span class="sc">%&gt;%</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="fu">strobe_initialize</span>(<span class="at">inclusion_label =</span> <span class="st">&quot;Initial transplant cohort&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="fu">strobe_filter</span>(</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="at">condition =</span> <span class="st">&quot;age &gt;= 30&quot;</span>,</span>
@@ -403,16 +403,17 @@ to demonstrate results.</p>
 <span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    <span class="at">inclusion_label =</span> <span class="st">&quot;No prior transplant&quot;</span>,</span>
 <span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>    <span class="at">exclusion_reason =</span> <span class="st">&quot;Excluded: Prior transplant&quot;</span></span>
 <span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>  )<span class="sc">%&gt;%</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)<span class="sc">%&gt;%</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>  <span class="co">#Show first rows and selected columns of final DF</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt;   age recipient.cmv donor.cmv prior.transplant sex race</span></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; 1  61             1         0                0   1    0</span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; 3  63             1         1                0   0    1</span></span>
-<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt; 4  33             1         0                0   0    1</span></span>
-<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt; 5  54             1         1                0   0    1</span></span>
-<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt; 6  55             1         1                0   1    1</span></span>
-<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt; 7  67             1         1                0   1    1</span></span></code></pre></div>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(age, recipient.cmv, donor.cmv, prior.transplant, sex, race)</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>  </span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#Show first rows and selected columns of final DF</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="fu">head</span>(df)</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt;   age recipient.cmv donor.cmv prior.transplant sex race</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; 1  61             1         0                0   1    0</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt; 3  63             1         1                0   0    1</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt; 4  33             1         0                0   0    1</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a><span class="co">#&gt; 5  54             1         1                0   0    1</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a><span class="co">#&gt; 6  55             1         1                0   1    1</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a><span class="co">#&gt; 7  67             1         1                0   1    1</span></span></code></pre></div>
 </div>
 <div id="reviewing-the-filtering-log" class="section level3">
 <h3>Reviewing the Filtering Log</h3>
@@ -480,6 +481,33 @@ to demonstrate results.</p>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 4 step3 step2  Donor CMV positive      Excluded: Donor… donor…        28      11</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 5 step4 step3  No prior transplant     Excluded: Prior… prior…        23       5</span></span></code></pre></div>
 </div>
+<div id="terminal-branching" class="section level3">
+<h3>Terminal branching</h3>
+<p>Not uncommonly, the terminal step of a STROBE diagram is used, not to
+show inclusions or exclusions, but how the final cohort is stratified
+based on the value of a factor variable. The
+<code>create_terminal_branch</code> function is designed for this
+purpose, and can handle factor variables with up to six levels
+(including missing values).</p>
+<p>The optional label_prefix argument allows you to prepend text (e.g.,
+the variable name) to each terminal group label. For example, setting
+<code>label_prefix</code> = “cgvhd:” will produce labels like ‘cgvhd: 0’
+and ‘cgvhd: 1’.</p>
+<p>Below, we use the variable <code>cgvhd</code> (chronic graft vs. host
+disease) to stratify the final inclusion cohort into two groups:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">create_terminal_branch</span>(df, <span class="at">variable =</span> <span class="st">&quot;cgvhd&quot;</span>, <span class="at">label_prefix=</span><span class="st">&quot;CGVHD value:&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">get_strobe_log</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 7</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;   id    parent inclusion_label         exclusion_reason filter remaining dropped</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;                   &lt;chr&gt;            &lt;chr&gt;      &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 start &lt;NA&gt;   All transplant recipie… &lt;NA&gt;             &lt;NA&gt;          64      NA</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 step1 start  Age 18–65               Excluded: Outsi… age &gt;…        63       1</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 step2 step1  CMV positive            Excluded: CMV n… recip…        39      24</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 step3 step2  Donor CMV positive      Excluded: Donor… donor…        28      11</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 step4 step3  No prior transplant     Excluded: Prior… prior…        23       5</span></span></code></pre></div>
+</div>
 </div>
 <div id="see-also" class="section level2">
 <h2>See Also</h2>
@@ -487,6 +515,7 @@ to demonstrate results.</p>
 <li><code>?strobe_initialize</code></li>
 <li><code>?strobe_filter</code></li>
 <li><code>?get_strobe_log</code></li>
+<li><code>?create_factor_variable</code></li>
 </ul>
 </div>
 

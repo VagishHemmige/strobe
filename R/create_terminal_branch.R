@@ -1,4 +1,15 @@
-create_terminal_branch <- function(data, variable, label = NULL) {
+#' Create Terminal Branches in STROBE Diagram
+#'
+#' Finalizes the STROBE diagram by branching into terminal inclusion nodes based
+#' on the values of a factor variable (e.g., outcome or stratifying variable).
+#' The function throws an error if `variable` has more than six levels (including NA).
+#'
+#' @param data A data frame being tracked by STROBE.
+#' @param variable A factor or character variable to split by.
+#' @param label_prefix Optional prefix to prepend to each level in the inclusion label.
+#' @return The input data frame (unchanged).
+#' @export
+create_terminal_branch <- function(data, variable, label_prefix = NULL) {
   stopifnot(is.data.frame(data))
 
   MAX_TERMINAL_BRANCHES <- 6L
@@ -25,8 +36,8 @@ create_terminal_branch <- function(data, variable, label = NULL) {
     ))
   }
 
-  if (is.null(label)) {
-    label <- paste0(var_name, ": ")
+  if (is.null(label_prefix)) {
+    label_prefix <- ""
   }
 
   step_num <- .strobe_env$strobe_step_counter
@@ -37,7 +48,7 @@ create_terminal_branch <- function(data, variable, label = NULL) {
     new_rows[[length(new_rows) + 1]] <- tibble::tibble(
       id               = paste0("step", step_num),
       parent           = parent_id,
-      inclusion_label  = paste0(label, lvl),
+      inclusion_label  = paste0(label_prefix, lvl),
       exclusion_reason = NA_character_,
       filter           = NA_character_,
       remaining        = as.integer(tab[[lvl]]),

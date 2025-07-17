@@ -11,7 +11,7 @@ library(medicaldata)
 
 data(cytomegalovirus)
 
-cytomegalovirus_final_df<-cytomegalovirus %>%
+cytomegalovirus_df<-cytomegalovirus %>%
   strobe_initialize("All transplant recipients") %>%
   strobe_filter("age >= 18 & age <= 65", "Age 18–65", "Excluded: Outside 18–65") %>%
   strobe_filter("recipient.cmv == 1", "CMV positive", "Excluded: CMV negative") %>%
@@ -25,7 +25,7 @@ cytomegalovirus_final_df<-cytomegalovirus %>%
 getwd()
 dir.exists("man/figures")  # Should return TRUE
 
-plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
+svg_file_2_1 <-plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
 
 knitr::include_graphics("strobe-diagram_vignette2_1.svg")
 
@@ -87,11 +87,24 @@ knitr::include_graphics(svg_file_2_6)
 
 
 ## ----out.width="50%", fig.align="center"--------------------------------------
-svg_file_2_6 <-plot_strobe_diagram(lock_width_min = TRUE,
+
+#Add a terminal branch
+cytomegalovirus_df<-create_terminal_branch(cytomegalovirus_df, variable = "cgvhd", label_prefix="CGVHD value:")
+
+svg_file_2_7 <- plot_strobe_diagram(export_file = "strobe-diagram_vignette2_7.svg", 
+                                incl_fontsize = 90, excl_fontsize = 90, 
+                                lock_width_min = TRUE, 
+                                incl_width_min = 20, excl_width_min = 20)
+knitr::include_graphics("strobe-diagram_vignette2_7.svg")
+
+
+
+## ----out.width="50%", fig.align="center"--------------------------------------
+svg_file_2_8 <-plot_strobe_diagram(lock_width_min = TRUE,
                                    incl_width_min = 15,
                                    excl_width_min = 10,
-                                   export_file = "strobe-diagram_vignette2_7.svg")
-knitr::include_graphics("strobe-diagram_vignette2_7.svg")
+                                   export_file = "strobe-diagram_vignette2_8.svg")
+knitr::include_graphics("strobe-diagram_vignette2_8.svg")
 
 ## ----eval=FALSE---------------------------------------------------------------
 # strobe_filter(

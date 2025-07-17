@@ -14,8 +14,8 @@ test_that("create_terminal_branch works with unquoted and quoted variable names"
   log_unquoted <- get_strobe_log()
 
   expect_equal(nrow(log_unquoted), 5)
-  expect_equal(log_unquoted$inclusion_label[4], "cgvhd: 0")
-  expect_equal(log_unquoted$inclusion_label[5], "cgvhd: 1")
+  expect_equal(log_unquoted$inclusion_label[4], "0")
+  expect_equal(log_unquoted$inclusion_label[5], "1")
 
   # Reset and use quoted
   df <- cytomegalovirus
@@ -27,9 +27,29 @@ test_that("create_terminal_branch works with unquoted and quoted variable names"
   log_quoted <- get_strobe_log()
 
   expect_equal(nrow(log_quoted), 5)
-  expect_equal(log_quoted$inclusion_label[4], "cgvhd: 0")
-  expect_equal(log_quoted$inclusion_label[5], "cgvhd: 1")
+  expect_equal(log_quoted$inclusion_label[4], "0")
+  expect_equal(log_quoted$inclusion_label[5], "1")
 })
+
+test_that("create_terminal_branch uses label_prefix correctly", {
+  skip_if_not_installed("medicaldata")
+
+  cytomegalovirus <- medicaldata::cytomegalovirus
+
+  df <- cytomegalovirus
+  df <- strobe_initialize(df, "Initial CMV transplant cohort")
+  df <- strobe_filter(df, "age >= 30", "Age ≥ 30", "Excluded: Age < 30")
+  df <- strobe_filter(df, "recipient.cmv == 1", "Recipient CMV positive", "Excluded: CMV negative")
+
+  # Pass label_prefix explicitly
+  df <- create_terminal_branch(df, cgvhd, label_prefix = "cgvhd: ")
+  log <- get_strobe_log()
+
+  expect_equal(nrow(log), 5)
+  expect_equal(log$inclusion_label[4], "cgvhd: 0")
+  expect_equal(log$inclusion_label[5], "cgvhd: 1")
+})
+
 
 test_that("create_terminal_branch throws error if levels exceed maximum", {
   skip_if_not_installed("medicaldata")
