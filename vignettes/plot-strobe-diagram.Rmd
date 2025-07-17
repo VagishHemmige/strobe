@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 resource_files:
-  - vignettes/strobe-diagram_vignette2_1.svg
+  - figures
 ---
 
 ```{r, include = FALSE}
@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+
 ```
 
 
@@ -53,15 +55,16 @@ plot_strobe_diagram()
 ```
 
 
+
 While this will work in interactive mode, it typically will *not* work well when knitting an R Markdown file.  In that case, we recommend exporting to a file and then directly incorporating the exported file in the R markdown file.
 
 ```{r, out.width="50%", fig.align="center"}
-getwd()
-dir.exists("man/figures")  # Should return TRUE
 
-svg_file_2_1 <-plot_strobe_diagram(export_file = "strobe-diagram_vignette2_1.svg")
+svg_file_2_1 <-plot_strobe_diagram(export_file = "../man/figures/strobe-diagram_vignette2_1.svg")
 
-knitr::include_graphics("strobe-diagram_vignette2_1.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_1.svg")
+
+
 ```
 
 
@@ -80,8 +83,9 @@ We first demonstrate the use of the minimum width setting:
 
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_2a <-plot_strobe_diagram(incl_width_min = 10, excl_width_min = 10, 
-                                   export_file = "strobe-diagram_vignette2_2a.svg")
-knitr::include_graphics("strobe-diagram_vignette2_2a.svg")
+                                   export_file = "../man/figures/strobe-diagram_vignette2_2a.svg")
+
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_2a.svg")
 
 ```
 
@@ -91,8 +95,8 @@ We can use the `incl_height` option to set the height of the inclusion boxes, an
 
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_2b <-plot_strobe_diagram(incl_height = 5, excl_height = 5, 
-                                   export_file = "strobe-diagram_vignette2_2b.svg")
-knitr::include_graphics("strobe-diagram_vignette2_2b.svg")
+                                   export_file = "../man/figures/strobe-diagram_vignette2_2b.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_2b.svg")
 ```
 
 
@@ -104,8 +108,8 @@ The `DiagrammeR` package, by default, takes input sizes as suggestions and may c
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_3 <-plot_strobe_diagram(lock_width_min = TRUE, 
                                    lock_height = TRUE, 
-                                   export_file = "strobe-diagram_vignette2_3.svg")
-knitr::include_graphics("strobe-diagram_vignette2_3.svg")
+                                   export_file = "../man/figures/strobe-diagram_vignette2_3.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_3.svg")
 ```
 
 
@@ -118,8 +122,8 @@ You can separately control font sizes for inclusion and exclusion boxes:
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_4 <-plot_strobe_diagram(incl_fontsize = 16, 
                                    excl_fontsize = 14, 
-                                   export_file = "strobe-diagram_vignette2_4.svg")
-knitr::include_graphics("strobe-diagram_vignette2_4.svg")
+                                   export_file = "../man/figures/strobe-diagram_vignette2_4.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_4.svg")
 ```
 
 
@@ -128,8 +132,8 @@ Use larger fonts for presentation or slide decks:
 ```{r, out.width="50%", fig.align="center"}
 svg_file_2_5a <-plot_strobe_diagram(incl_fontsize = 150, 
                                    excl_fontsize = 150, 
-                                   export_file = "strobe-diagram_vignette2_5a.svg")
-knitr::include_graphics(svg_file_2_5a)
+                                   export_file = "../man/figures/strobe-diagram_vignette2_5a.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_5a.svg")
 ```
 
 
@@ -140,8 +144,8 @@ The use of larger fonts will likely require some trial and error with box sizing
 svg_file_2_5b <-plot_strobe_diagram(incl_fontsize = 150, 
                                    excl_fontsize = 150,
                                    incl_width_min = 20, excl_width_min = 30, 
-                                   export_file = "strobe-diagram_vignette2_5b.svg")
-knitr::include_graphics(svg_file_2_5b)
+                                   export_file = "../man/figures/strobe-diagram_vignette2_5b.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_5b.svg")
 ```
 
 
@@ -161,9 +165,9 @@ svg_file_2_6 <-plot_strobe_diagram(
   excl_fontsize = 16,
   lock_width_min = TRUE,
   lock_height = TRUE,
-  export_file = "strobe-diagram_vignette2_6.svg"
+  export_file = "../man/figures/strobe-diagram_vignette2_6.svg"
 )
-knitr::include_graphics(svg_file_2_6)
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_6.svg")
 ```
 
 
@@ -176,11 +180,11 @@ You don't have to do anything special to account for terminal branching when plo
 #Add a terminal branch
 cytomegalovirus_df<-create_terminal_branch(cytomegalovirus_df, variable = "cgvhd", label_prefix="CGVHD value:")
 
-svg_file_2_7 <- plot_strobe_diagram(export_file = "strobe-diagram_vignette2_7.svg", 
+svg_file_2_7 <- plot_strobe_diagram(export_file = "../man/figures/strobe-diagram_vignette2_7.svg", 
                                 incl_fontsize = 90, excl_fontsize = 90, 
                                 lock_width_min = TRUE, 
                                 incl_width_min = 20, excl_width_min = 20)
-knitr::include_graphics("strobe-diagram_vignette2_7.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_7.svg")
 ```
 
 
@@ -195,8 +199,8 @@ The plot_strobe_diagram's underlying dependence on DiagrammeR means that the sug
 svg_file_2_8 <-plot_strobe_diagram(lock_width_min = TRUE,
                                    incl_width_min = 15,
                                    excl_width_min = 10,
-                                   export_file = "strobe-diagram_vignette2_8.svg")
-knitr::include_graphics("strobe-diagram_vignette2_8.svg")
+                                   export_file = "../man/figures/strobe-diagram_vignette2_8.svg")
+knitr::include_graphics("../man/figures/strobe-diagram_vignette2_8.svg")
 ```
 
 
