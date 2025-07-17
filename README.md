@@ -40,10 +40,8 @@ with:*
 install.packages("medicaldata")
 ```
 
-We now create an SVG plot in R and then plot it. Interactively,
-`the plot_strobe_diagram()` function can also directly create plots that
-can be viewed in the Rstudio viewer, but direct visualization in an .rmd
-file which has been knitted may cause formatting issues.
+We now create an SVG plot in R and then print the strobe log with the
+`get_strobe_log` function.
 
 ``` r
 library(strobe)
@@ -61,6 +59,15 @@ get_strobe_log()
 #> 1 start <NA>   Initial CMV transplant… <NA>             <NA>          64      NA
 #> 2 step1 start  Age ≥ 30                Excluded: Age <… age >…        63       1
 #> 3 step2 step1  Recipient CMV positive  Excluded: CMV n… recip…        40      23
+```
+
+Finally, we plot the STROBE diagram associated with the above code.
+Interactively, the `plot_strobe_diagram()` function can also directly
+create plots that can be viewed in the Rstudio viewer, but direct
+visualization in an .rmd file which has been knitted may cause
+formatting issues.
+
+``` r
 svg_file <- plot_strobe_diagram(export_file = "man/figures/strobe-diagram_vignette1_1.svg", 
                                 incl_fontsize = 90, excl_fontsize = 90, 
                                 lock_width_min = TRUE, 
