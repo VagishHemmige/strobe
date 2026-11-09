@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "strobe: Tools for STROBE-Style Inclusion and Exclusion Tracking with patient-level data"
+type: software
+authors:
+  - family-names: Hemmige
+    given-names: Vagish
+    orcid: "https://orcid.org/0009-0006-6346-1826"
+version: "0.0.0.9000"
+license: MIT
+abstract: "Helper functions for tracking inclusion and exclusion criteria in observational cohort studies and drawing STROBE-style flow diagrams."
+repository-code: "https://github.com/VagishHemmige/strobe"
+url: "https://vagishhemmige.github.io/strobe/"
